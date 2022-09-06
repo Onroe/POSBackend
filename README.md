@@ -12,5 +12,5 @@ Go to http://localhost:8000/signin. To access the application
 
 
 
-![Screenshot](screen.jpg)
+![Screenshot](screen.JPG)
 
