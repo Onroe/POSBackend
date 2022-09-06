@@ -7,8 +7,7 @@ test_user = {"username": "testusername", "password": "testpassword"}
 
 class OrdersTest(TestCase):
     def setUp(self):
-        new_user = User.objects.create(
-            username=test_user["username"])
+        new_user = User.objects.create(username=test_user["username"])
         new_user.set_password(test_user["password"])
         new_user.save()
 

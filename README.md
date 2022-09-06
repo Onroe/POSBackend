@@ -9,3 +9,8 @@ cd to folder
 To run the application use: python manage.py runserver
 
 Go to http://localhost:8000/signin. To access the application
+
+
+
+![Screenshot](screen.jpg)
+
