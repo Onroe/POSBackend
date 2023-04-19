@@ -29,7 +29,7 @@ jobs:
       DB_HOST: 127.0.0.1
       DB_DATABASE: django_pos
       DB_USER: root
-      DB_PASSWORD:
+      DB_PASSWORD: root
 
     steps:
     - name: Checkout code
