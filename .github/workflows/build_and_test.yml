@@ -32,7 +32,7 @@ jobs:
       env:
         DB_DATABASE: django_pos
         DB_USERNAME: root
-        DB_PASSWORD: 
+        DB_PASSWORD: root
 	      DB_HOST: localhost
 		    DB_PORT: 3306
 
