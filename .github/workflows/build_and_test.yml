@@ -19,7 +19,7 @@ jobs:
       database:
         image: ${{ matrix.database }}
         env:
-          MYSQL_ROOT_PASSWORD: 
+          MYSQL_ROOT_PASSWORD: root
         ports:
         - 3306:3306
         #options: --tmpfs /var/lib/mysql
@@ -29,7 +29,7 @@ jobs:
       DB_HOST: 127.0.0.1
       DB_DATABASE: django_pos
       DB_USER: root
-      DB_PASSWORD: root
+      DB_PASSWORD: 
 
     steps:
     - name: Checkout code
