@@ -27,8 +27,16 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install -r requirements.txt
-  
-    - name: Run Tests
+
+    - name: Set up and run tests
+      env:
+        SECRET_KEY: 69tgugtg%^fgJO&*&
+        DB_DATABASE: django_pos
+        DB_USERNAME: root
+        DB_PASSWORD: 
+	      DB_HOST: localhost
+		    DB_PORT: 3306
+
       run: |
         python manage.py test
 
