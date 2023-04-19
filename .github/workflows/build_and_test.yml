@@ -19,7 +19,7 @@ jobs:
       database:
         image: ${{ matrix.database }}
         env:
-          #MYSQL_ROOT_PASSWORD: 
+          MYSQL_ROOT_PASSWORD: 
         ports:
         - 3306:3306
         #options: --tmpfs /var/lib/mysql
