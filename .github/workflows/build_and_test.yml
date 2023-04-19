@@ -30,9 +30,11 @@ jobs:
 
     - name: Set up and run tests
       env:
-        DB_DATABASE: django_pos
-        DB_USERNAME: root
-	      DB_HOST: localhost
+        DEBUG: "0"
+        DB_USERNAME: "root"
+        DB_PASSWORD: ""
+	      DB_HOST: "localhost"
+        DB_DATABASE: "django_pos"
 		    DB_PORT: 3306
 
       run: |
