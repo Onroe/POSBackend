@@ -41,29 +41,18 @@ jobs:
         pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Migrations
-      run: |
-        sudo /etc/init.d/mysql start
-
-        python manage.py migrate
-
-      env: 
-        DBENGINE: django.db.backends.mysql
-        DBNAME: django_pos
-        DBUSER: simpson
-        DBPASSWORD: password
-        DBHOST: 127.0.0.1
-        DBPORT: $
-       
 
     - name: Run Tests
-      run: |
-        sudo /etc/init.d/mysql start
-        python manage.py test
       env: 
         DBENGINE: django.db.backends.mysql
-        DBNAME: django_pos
-        DBUSER: simpsom
-        DBPASSWORD: password
-        DBHOST: 127.0.0.1
-        DBPORT: $
+        DATABASE_NAME: django_pos
+        DATABASE_USERNAME: simpson
+        DATABASE_PASSWORD: password
+        DATABASE_BHOST: 127.0.0.1
+        DATABASE_PORT: 3306
+       
+      run: |
+        sudo /etc/init.d/mysql start
+        python manage.py migrate    
+        python manage.py test
+     
