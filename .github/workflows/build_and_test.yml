@@ -44,7 +44,10 @@ jobs:
     - name: Run Migrations
       run: |
         sudo /etc/init.d/mysql start
+        sudo mysql CREATE USER 'simpson'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
+        sudo mysql GRANT ALL PRIVILEGES ON *.* TO 'simpson'@'localhost' WITH GRANT OPTION;
         python manage.py migrate
+
       env: 
         DBENGINE: django.db.backends.mysql
         DBNAME: django_pos
