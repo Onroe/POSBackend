@@ -42,7 +42,9 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run Migrations
-      run: python manage.py migrate
+      run: |
+        sudo /etc/init.d/mysql start
+        python manage.py migrate
       env: 
         DBENGINE: django.db.backends.mysql
         DBNAME: django_pos
