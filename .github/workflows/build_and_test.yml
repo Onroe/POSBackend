@@ -47,7 +47,7 @@ jobs:
         DBENGINE: django.db.backends.mysql
         DATABASE_NAME: django_pos
         DATABASE_USERNAME: simpson
-        DATABASE_PASSWORD: password
+        DATABASE_PASSWORD: 
         DATABASE_BHOST: 127.0.0.1
         DATABASE_PORT: 3306
        
