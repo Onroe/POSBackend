@@ -16,13 +16,16 @@ jobs:
     
     
     services:
-      database:
-        image: mysql:5.7
+      mysql:
+          image: mysql:5.7
         env:
           #MYSQL_ROOT_PASSWORD: root
           #MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: django_pos
-        ports:  ['3306:3306']
+          DB_USER: simpson
+          DB_PASSWORD: password
+        ports: 
+        - 3306:3306
         #options: --tmpfs /var/lib/mysql
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     
@@ -49,8 +52,8 @@ jobs:
       env: 
         DBENGINE: django.db.backends.mysql
         DATABASE_NAME: django_pos
-        DATABASE_USERNAME: root
-        DATABASE_PASSWORD: 
+        DATABASE_USERNAME: simpson
+        DATABASE_PASSWORD: password
         DATABASE_BHOST: 127.0.0.1
         DATABASE_PORT: 3306
        
