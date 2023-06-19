@@ -31,11 +31,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      run: mysql -h 127.0.0.1 --port 3306 -u root -p -e 'CREATE DATABASE IF NOT EXISTS django_pos'
+      
     - name: Set up Python Environment
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
+    - run: mysql -h 127.0.0.1 --port 3306 -u root -p -e 'CREATE DATABASE IF NOT EXISTS django_pos'
     
   
     - name: Install Dependencies
