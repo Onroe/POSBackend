@@ -16,14 +16,12 @@ jobs:
     
     
     services:
-      mysql:
-        image: mysql:5.7
+      database:
+        image: ${{ matrix.database }}
         env:
           #MYSQL_ROOT_PASSWORD: root
           #MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: django_pos
-          DB_USER: simpson
-          DB_PASSWORD: password
         ports:  ['3306:3306']
         #options: --tmpfs /var/lib/mysql
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -38,7 +36,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-    #- run: mysql -h 127.0.0.1 --port 3306 -u simpson -ppassword -e 'CREATE DATABASE IF NOT EXISTS django_pos'
     
   
     - name: Install Dependencies
@@ -51,13 +48,14 @@ jobs:
       env: 
         DBENGINE: django.db.backends.mysql
         DATABASE_NAME: django_pos
-        DATABASE_USERNAME: root
-        DATABASE_PASSWORD: 
+        DATABASE_USERNAME: simpson
+        DATABASE_PASSWORD: password
         DATABASE_BHOST: 127.0.0.1
         DATABASE_PORT: 3306
        
       run: |
         sudo /etc/init.d/mysql start
+        mysql -h 127.0.0.1 --port 3306 -u simpson -ppassword -e 'CREATE DATABASE IF NOT EXISTS django_pos'
         python manage.py migrate    
         python manage.py test
      
