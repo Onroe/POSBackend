@@ -36,7 +36,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-    - run: mysql -h 127.0.0.1 --port 3306 -u root -p -e 'CREATE DATABASE IF NOT EXISTS django_pos'
+    - run: mysql -h 127.0.0.1 --port 3306 -u simpson -ppassword -e 'CREATE DATABASE IF NOT EXISTS django_pos'
     
   
     - name: Install Dependencies
