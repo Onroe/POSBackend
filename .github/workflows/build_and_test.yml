@@ -19,7 +19,7 @@ jobs:
       database:
         image: ${{ matrix.database }}
         env:
-          MYSQL_ROOT_PASSWORD: simpson
+          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: django_pos
         ports:  ['3306:3306']
         #options: --tmpfs /var/lib/mysql
@@ -46,7 +46,7 @@ jobs:
       env: 
         DBENGINE: django.db.backends.mysql
         DATABASE_NAME: django_pos
-        DATABASE_USERNAME: simpson
+        DATABASE_USERNAME: root
         DATABASE_PASSWORD: 
         DATABASE_BHOST: 127.0.0.1
         DATABASE_PORT: 3306
