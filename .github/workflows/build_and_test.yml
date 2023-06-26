@@ -32,7 +32,7 @@ jobs:
          DBENGINE: django.db.backends.mysql
          DATABASE_NAME: django_pos
          DATABASE_USERNAME: root
-         DATABASE_PASSWORD: 
+         DATABASE_PASSWORD: root
          DATABASE_BHOST: 127.0.0.1
          DATABASE_PORT: 3306
        
