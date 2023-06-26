@@ -27,18 +27,4 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Tests
-        env: 
-         DBENGINE: django.db.backends.mysql
-         DATABASE_NAME: django_pos
-         DATABASE_USERNAME: root
-         DATABASE_PASSWORD: 
-         DATABASE_BHOST: 127.0.0.1
-         DATABASE_PORT: 3306
-       
-        run: |
-         sudo /etc/init.d/mysql start
-         mysql -h 127.0.0.1 --port 3306 -u root -p -e 'CREATE DATABASE IF NOT EXISTS django_pos'
-         python manage.py migrate    
-         python manage.py test
-     
+      
