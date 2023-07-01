@@ -43,7 +43,7 @@ jobs:
        
         run: |
          sudo /etc/init.d/mysql start
-         mysql -h 127.0.0.1 --port 3306 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS django_pos'
+         mysql -h 127.0.0.1 --port 3306 -u root -p -e 'CREATE DATABASE IF NOT EXISTS django_pos'
          python manage.py makemigrations
          python manage.py migrate
          python manage.py test
