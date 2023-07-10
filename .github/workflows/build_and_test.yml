@@ -1,39 +1,50 @@
-name: Build and Test
+name: Django application
 
 on:
   push:
-    branches: [main]
+    branches: [Master]
   pull_request:
     branches: [main]
 
 jobs:
-  test:
+  execute_tests:
+    name: Install requirements and execute tests
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [3.9]
+
+    services:
+      mysql:
+        image: mysql:5.7
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Set up Python Environment
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'
-    - name: Set up and run tests
-      env:
-        DB_ENGINE: django.db.backends.mysql
-        DB_NAME: django_pos
-        DB_USER: root
-        DB_PASSWORD: 
+      - name: Update
+        run: sudo apt update
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Set up Python Environment
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    
   
-    - name: Install Dependencies
-      run: |
-        pip install --upgrade pip
-        pip install -r requirements.txt
-  
-    - name: Run Tests
-      run: |
-        python manage.py test
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
 
+      - name: Run Tests
+        env: 
+         DBENGINE: django.db.backends.mysql
+         DATABASE_NAME: django_pos
+         DATABASE_USERNAME: root
+         DATABASE_PASSWORD: root
+         DATABASE_BHOST: 127.0.0.1
+         DATABASE_PORT: 3306
+       
+        run: |
+         sudo /etc/init.d/mysql start
+         mysql -h 127.0.0.1 --port 3306 -u root -proot -e 'CREATE DATABASE IF NOT EXISTS django_pos'
+         python manage.py makemigrations
+         python manage.py migrate
+         python manage.py test
+     
