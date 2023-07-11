@@ -5,7 +5,7 @@ name: Django application
 on:
   # opening a push request on master and a pull request on main will be a trigger
   push:
-    branches: [Master]
+    branches: [master]
   pull_request:
     branches: [main]
 
