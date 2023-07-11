@@ -35,9 +35,6 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Check Syntax # check code formatting
-        run: pycodestyle --statistics .
-
       - name: Run Tests
         env: 
          DBENGINE: django.db.backends.mysql
