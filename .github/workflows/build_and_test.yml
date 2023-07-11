@@ -1,33 +1,36 @@
+# name of our workflow
 name: Django application
 
+# triggers for our workflow
 on:
+  # opening a push request on master and a pull request on main will be a trigger
   push:
-    branches: [Master]
+    branches: [master]
   pull_request:
     branches: [main]
 
+# job definition - job 1
 jobs:
-  execute_tests:
-    name: Install requirements and execute tests
-    runs-on: ubuntu-latest
+  execute_tests:    #Test job
+    name: Install requirements and execute tests  # Job desc
+    runs-on: ubuntu-latest  # os for running the job
 
     services:
-      mysql:
+      mysql: # we need mysql docker image 
         image: mysql:5.7
 
     steps:
       - name: Update
         run: sudo apt update
-      - name: Check out repository code
+      - name: Check out repository code  #checking our the code at current commit that triggers the workflow
         uses: actions/checkout@v3
       - name: Set up Python Environment
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-    
+          python-version: '3.9'  # setting python environment to 3.x
+          
   
-      - name: Install Dependencies
+      - name: Install Dependencies # install application requirements
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
@@ -41,10 +44,10 @@ jobs:
          DATABASE_BHOST: 127.0.0.1
          DATABASE_PORT: 3306
        
-        run: |
+        run: |      # run migrations to create table in side car db container and run tests
          sudo /etc/init.d/mysql start
          mysql -h 127.0.0.1 --port 3306 -u root -proot -e 'CREATE DATABASE IF NOT EXISTS django_pos'
-         python manage.py makemigrations
+         python manage.py makemigrations  
          python manage.py migrate
          python manage.py test
      
